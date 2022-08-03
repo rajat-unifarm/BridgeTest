@@ -2,6 +2,9 @@
   "mumbai": {
     "BridgeUpgradeable": {
       "address": "0x187b8Aed16CA0ee242831f1bAcd5Aa88e3478C64"
+    },
+    "FeePoolUpgradeable": {
+      "address": "0xA9B0A14b99d0e4F42a0c6433a42c671A6B1E74Aa"
     }
   }
 }

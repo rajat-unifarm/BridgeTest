@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: BridgeUpgradeable
@@ -17,13 +17,13 @@ dataSources:
         - LiquidityPositions
       abis:
         - name: BridgeUpgradeable
-          file: ./abis/BridgeUpgradeable.json
+          file: BridgeUpgradeable/abis/BridgeUpgradeable.json
       eventHandlers:
         - event: LiquidityAdded(indexed uint256,indexed address,indexed string,uint256)
           handler: handleLiquidityAdded
         - event: LiquidityRemoved(indexed uint256,indexed address,indexed string)
           handler: handleLiquidityRemoved
-      file: ./src/bridge-upgradeable.ts
+      file: BridgeUpgradeable/BridgeUpgradeable.wasm
   - kind: ethereum
     name: FeePoolUpgradeable
     network: mumbai
@@ -39,8 +39,8 @@ dataSources:
         - ClaimedRewards
       abis:
         - name: FeePoolUpgradeable
-          file: ./abis/FeePoolUpgradeable.json
+          file: FeePoolUpgradeable/abis/FeePoolUpgradeable.json
       eventHandlers:
         - event: ClaimedRewards(indexed uint256,indexed address,indexed string,uint256,uint256)
           handler: handleClaimedRewards
-      file: ./src/fee-pool-upgradeable.ts
+      file: FeePoolUpgradeable/FeePoolUpgradeable.wasm
