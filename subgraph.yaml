@@ -1,0 +1,50 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BridgeUpgradeable
+    network: mumbai
+    source:
+      address: "0x187b8Aed16CA0ee242831f1bAcd5Aa88e3478C64"
+      abi: BridgeUpgradeable
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - BridgeTransactionEnd
+        - BridgeTransactionInit
+        - CrossTalkReceive
+        - CrossTalkSend
+        - Initialized
+        - Linkevent
+        - LiquidityAdded
+        - LiquidityRemoved
+        - OwnershipTransferred
+        - Unlinkevent
+      abis:
+        - name: BridgeUpgradeable
+          file: ./abis/BridgeUpgradeable.json
+      eventHandlers:
+        - event: BridgeTransactionEnd(uint256,uint256,address,string)
+          handler: handleBridgeTransactionEnd
+        - event: BridgeTransactionInit(uint256,uint256,address,string,uint256)
+          handler: handleBridgeTransactionInit
+        - event: CrossTalkReceive(indexed uint8,indexed uint8,address,address,indexed bytes4,bytes,bytes32)
+          handler: handleCrossTalkReceive
+        - event: CrossTalkSend(indexed uint8,indexed uint8,address,address,indexed bytes4,bytes,bytes32)
+          handler: handleCrossTalkSend
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: Linkevent(indexed uint8,indexed address)
+          handler: handleLinkevent
+        - event: LiquidityAdded(indexed uint256,indexed address,indexed string,uint256)
+          handler: handleLiquidityAdded
+        - event: LiquidityRemoved(indexed uint256,indexed address,indexed string)
+          handler: handleLiquidityRemoved
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Unlinkevent(indexed uint8,indexed address)
+          handler: handleUnlinkevent
+      file: ./src/bridge-upgradeable.ts
