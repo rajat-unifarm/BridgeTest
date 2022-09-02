@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BridgeUpgradeable
-    network: mumbai
+    network: avalanche
     source:
-      address: "0xCBCa6a761E381c2D39874Df99CFEe150B6B16A58"
       abi: BridgeUpgradeable
-      startBlock: 27453948
+      address: "0xf677447c30a94091d880D7387d52F3503E5cDfbF"
+      startBlock: 19309511
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -19,18 +19,18 @@ dataSources:
         - name: BridgeUpgradeable
           file: BridgeUpgradeable/abis/BridgeUpgradeable.json
       eventHandlers:
-        - event: LiquidityAdded(indexed uint256,indexed address,indexed string,uint256)
+        - event: LiquidityAdded(indexed uint256,indexed address,string,uint256)
           handler: handleLiquidityAdded
-        - event: LiquidityRemoved(indexed uint256,indexed address,indexed string)
+        - event: LiquidityRemoved(indexed uint256,indexed address,string)
           handler: handleLiquidityRemoved
       file: BridgeUpgradeable/BridgeUpgradeable.wasm
   - kind: ethereum
     name: FeePoolUpgradeable
-    network: mumbai
+    network: avalanche
     source:
-      address: "0xfF27c9A6a878A018FAaD0511fAf870F09C6b79a1"
       abi: FeePoolUpgradeable
-      startBlock: 27453626
+      address: "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b"
+      startBlock: 18969737
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

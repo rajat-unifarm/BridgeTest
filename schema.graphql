@@ -1,34 +1,20 @@
-# type ExampleEntity @entity {
-#   id: ID!
-#   count: BigInt!
-#   transferIndex: BigInt! # uint256
-#   toChainId: BigInt! # uint256
-# }
-
-type LiquidityPositions @entity {
+type LiquidityPosition @entity {
   id: ID!
   index: BigInt!
   account: Bytes!
   tokenTicker: String!
   noOfTokens: BigInt!
+  status: Int!
+  addTimestamp: BigInt!
+  removeTimestamp: BigInt!
 }
 
-type ClaimedRewards @entity {
+type ClaimedReward @entity {
   id: ID!
   index: BigInt! # uint256
   account: Bytes! # address
   tokenTicker: String! # string
   noOfTokens: BigInt! # uint256
   claimTimestamp: BigInt! # uint256
+  txHash: Bytes!
 }
-
-# type FeePoolUpgradeableInitialized @entity {
-#   id: ID!
-#   version: Int! # uint8
-# }
-
-# type FeePoolUpgradeableOwnershipTransferred @entity {
-#   id: ID!
-#   previousOwner: Bytes! # address
-#   newOwner: Bytes! # address
-# }

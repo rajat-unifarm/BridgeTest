@@ -11,7 +11,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class LiquidityPositions extends Entity {
+export class LiquidityPosition extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,19 +19,19 @@ export class LiquidityPositions extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save LiquidityPositions entity without an ID");
+    assert(id != null, "Cannot save LiquidityPosition entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type LiquidityPositions must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type LiquidityPosition must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("LiquidityPositions", id.toString(), this);
+      store.set("LiquidityPosition", id.toString(), this);
     }
   }
 
-  static load(id: string): LiquidityPositions | null {
-    return changetype<LiquidityPositions | null>(
-      store.get("LiquidityPositions", id)
+  static load(id: string): LiquidityPosition | null {
+    return changetype<LiquidityPosition | null>(
+      store.get("LiquidityPosition", id)
     );
   }
 
@@ -79,9 +79,36 @@ export class LiquidityPositions extends Entity {
   set noOfTokens(value: BigInt) {
     this.set("noOfTokens", Value.fromBigInt(value));
   }
+
+  get status(): i32 {
+    let value = this.get("status");
+    return value!.toI32();
+  }
+
+  set status(value: i32) {
+    this.set("status", Value.fromI32(value));
+  }
+
+  get addTimestamp(): BigInt {
+    let value = this.get("addTimestamp");
+    return value!.toBigInt();
+  }
+
+  set addTimestamp(value: BigInt) {
+    this.set("addTimestamp", Value.fromBigInt(value));
+  }
+
+  get removeTimestamp(): BigInt {
+    let value = this.get("removeTimestamp");
+    return value!.toBigInt();
+  }
+
+  set removeTimestamp(value: BigInt) {
+    this.set("removeTimestamp", Value.fromBigInt(value));
+  }
 }
 
-export class ClaimedRewards extends Entity {
+export class ClaimedReward extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -89,18 +116,18 @@ export class ClaimedRewards extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ClaimedRewards entity without an ID");
+    assert(id != null, "Cannot save ClaimedReward entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type ClaimedRewards must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type ClaimedReward must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("ClaimedRewards", id.toString(), this);
+      store.set("ClaimedReward", id.toString(), this);
     }
   }
 
-  static load(id: string): ClaimedRewards | null {
-    return changetype<ClaimedRewards | null>(store.get("ClaimedRewards", id));
+  static load(id: string): ClaimedReward | null {
+    return changetype<ClaimedReward | null>(store.get("ClaimedReward", id));
   }
 
   get id(): string {
@@ -155,5 +182,14 @@ export class ClaimedRewards extends Entity {
 
   set claimTimestamp(value: BigInt) {
     this.set("claimTimestamp", Value.fromBigInt(value));
+  }
+
+  get txHash(): Bytes {
+    let value = this.get("txHash");
+    return value!.toBytes();
+  }
+
+  set txHash(value: Bytes) {
+    this.set("txHash", Value.fromBytes(value));
   }
 }

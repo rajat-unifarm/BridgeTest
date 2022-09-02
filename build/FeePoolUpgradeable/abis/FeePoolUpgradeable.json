@@ -46,7 +46,7 @@
         "type": "uint8"
       }
     ],
-    "name": "FeePoolUpgradeableInitialized",
+    "name": "Initialized",
     "type": "event"
   },
   {
@@ -65,7 +65,7 @@
         "type": "address"
       }
     ],
-    "name": "FeePoolUpgradeableOwnershipTransferred",
+    "name": "OwnershipTransferred",
     "type": "event"
   },
   {

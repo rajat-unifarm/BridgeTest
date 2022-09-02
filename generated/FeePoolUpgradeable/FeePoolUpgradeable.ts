@@ -44,16 +44,16 @@ export class ClaimedRewards__Params {
   }
 }
 
-export class FeePoolUpgradeableInitialized extends ethereum.Event {
-  get params(): FeePoolUpgradeableInitialized__Params {
-    return new FeePoolUpgradeableInitialized__Params(this);
+export class Initialized extends ethereum.Event {
+  get params(): Initialized__Params {
+    return new Initialized__Params(this);
   }
 }
 
-export class FeePoolUpgradeableInitialized__Params {
-  _event: FeePoolUpgradeableInitialized;
+export class Initialized__Params {
+  _event: Initialized;
 
-  constructor(event: FeePoolUpgradeableInitialized) {
+  constructor(event: Initialized) {
     this._event = event;
   }
 
@@ -62,16 +62,16 @@ export class FeePoolUpgradeableInitialized__Params {
   }
 }
 
-export class FeePoolUpgradeableOwnershipTransferred extends ethereum.Event {
-  get params(): FeePoolUpgradeableOwnershipTransferred__Params {
-    return new FeePoolUpgradeableOwnershipTransferred__Params(this);
+export class OwnershipTransferred extends ethereum.Event {
+  get params(): OwnershipTransferred__Params {
+    return new OwnershipTransferred__Params(this);
   }
 }
 
-export class FeePoolUpgradeableOwnershipTransferred__Params {
-  _event: FeePoolUpgradeableOwnershipTransferred;
+export class OwnershipTransferred__Params {
+  _event: OwnershipTransferred;
 
-  constructor(event: FeePoolUpgradeableOwnershipTransferred) {
+  constructor(event: OwnershipTransferred) {
     this._event = event;
   }
 

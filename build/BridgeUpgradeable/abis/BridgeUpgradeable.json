@@ -25,6 +25,12 @@
         "internalType": "string",
         "name": "tokenTicker",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "status",
+        "type": "uint8"
       }
     ],
     "name": "BridgeTransactionEnd",
@@ -87,30 +93,6 @@
         "internalType": "address",
         "name": "sourceAddress",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "destinationAddress",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "bytes4",
-        "name": "_selector",
-        "type": "bytes4"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "_data",
-        "type": "bytes"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes32",
-        "name": "_hash",
-        "type": "bytes32"
       }
     ],
     "name": "CrossTalkReceive",
@@ -213,7 +195,7 @@
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "tokenTicker",
         "type": "string"
@@ -244,7 +226,7 @@
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "tokenTicker",
         "type": "string"
@@ -346,6 +328,11 @@
         "internalType": "uint256",
         "name": "_noOfTokens",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_noOfBoosters",
+        "type": "uint256"
       }
     ],
     "name": "addLiquidity",
@@ -366,7 +353,7 @@
         "type": "uint256"
       }
     ],
-    "name": "approveFees",
+    "name": "approveRouterFee",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -384,6 +371,11 @@
         "internalType": "uint256",
         "name": "price",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "imageUrl",
+        "type": "string"
       },
       {
         "internalType": "address",
@@ -474,11 +466,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_userAddress",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
         "name": "_noOfTokens",
         "type": "uint256"
@@ -515,6 +502,11 @@
         "internalType": "uint8",
         "name": "_toChainId",
         "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_gasPrice",
+        "type": "uint256"
       }
     ],
     "name": "crossChainTransferOut",
@@ -672,8 +664,39 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "hash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "fetchExecutes",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8",
+            "name": "chainID",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint64",
+            "name": "nonce",
+            "type": "uint64"
+          }
+        ],
+        "internalType": "struct iRouterCrossTalkUpgradeable.ExecutesStruct",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
-    "name": "fetchFeetToken",
+    "name": "fetchFeeToken",
     "outputs": [
       {
         "internalType": "address",
@@ -987,6 +1010,11 @@
         "internalType": "uint256",
         "name": "boosterEndEpochIndex",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTimestamp",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -1065,6 +1093,24 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "hash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_crossChainGasPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "replayTransaction",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint8",
         "name": "srcChainID",
         "type": "uint8"
@@ -1075,19 +1121,9 @@
         "type": "address"
       },
       {
-        "internalType": "bytes4",
-        "name": "_selector",
-        "type": "bytes4"
-      },
-      {
         "internalType": "bytes",
-        "name": "_data",
+        "name": "data",
         "type": "bytes"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "hash",
-        "type": "bytes32"
       }
     ],
     "name": "routerSync",
@@ -1241,6 +1277,11 @@
         "internalType": "uint8",
         "name": "_toChainId",
         "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_gasPrice",
+        "type": "uint256"
       }
     ],
     "name": "transferIn",
@@ -1267,6 +1308,16 @@
         "type": "string"
       },
       {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -1275,13 +1326,8 @@
     "name": "transferMapping",
     "outputs": [
       {
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
-        "name": "noOfTokens",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -1290,11 +1336,6 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddress",
-        "type": "address"
-      },
       {
         "internalType": "uint256",
         "name": "_noOfTokens",
@@ -1340,6 +1381,11 @@
         "internalType": "uint256",
         "name": "_perBoosterPrice",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_imageUrl",
+        "type": "string"
       }
     ],
     "name": "updateBoosterConfig",

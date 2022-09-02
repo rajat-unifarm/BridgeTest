@@ -1,10 +1,52 @@
 {
   "mumbai": {
     "BridgeUpgradeable": {
-      "address": "0x187b8Aed16CA0ee242831f1bAcd5Aa88e3478C64"
+      "address": "0x20c02F330475F79871c2D7B1d0c855328b840d18",
+      "startBlock": 27621685
     },
     "FeePoolUpgradeable": {
-      "address": "0xA9B0A14b99d0e4F42a0c6433a42c671A6B1E74Aa"
+      "address": "0x76C3885817Fb82a98a308C19EF06471b51Ba9FcD",
+      "startBlock": 27621685
+    }
+  },
+  "matic": {
+    "BridgeUpgradeable": {
+      "address": "0x4041fB92E7B33dEE9a9153CF2260a527e471Db5E",
+      "startBlock": 32476547
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x22Cdc2f0a254fc922769aa86C88e7E37Eb685cB9",
+      "startBlock": 32189123
+    }
+  },
+  "bsc": {
+    "BridgeUpgradeable": {
+      "address": "0x74636A5EaD7cEBdD3887d486806110A8Aa2985d6",
+      "startBlock": 20889600
+    },
+    "FeePoolUpgradeable": {
+      "address": "0xf677447c30a94091d880D7387d52F3503E5cDfbF",
+      "startBlock": 20690290
+    }
+  },
+  "fantom": {
+    "BridgeUpgradeable": {
+      "address": "0x1058BAF50D58C642559388F3fafd02950A596Cf5",
+      "startBlock": 45989668
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b",
+      "startBlock": 45232138
+    }
+  },
+  "avalanche": {
+    "BridgeUpgradeable": {
+      "address": "0xf677447c30a94091d880D7387d52F3503E5cDfbF",
+      "startBlock": 19309511
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b",
+      "startBlock": 18969737
     }
   }
 }
