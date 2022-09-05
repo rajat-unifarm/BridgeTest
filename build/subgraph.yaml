@@ -42,5 +42,5 @@ dataSources:
           file: FeePoolUpgradeable/abis/FeePoolUpgradeable.json
       eventHandlers:
         - event: ClaimedRewards(indexed uint256,indexed address,indexed string,uint256,uint256)
-          handler: handleClaimedRewards
+          handler: handleClaimedReward
       file: FeePoolUpgradeable/FeePoolUpgradeable.wasm

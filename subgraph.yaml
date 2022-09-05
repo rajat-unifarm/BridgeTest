@@ -43,5 +43,5 @@ dataSources:
       eventHandlers:
         - event: ClaimedRewards(indexed uint256,indexed address,indexed
             string,uint256,uint256)
-          handler: handleClaimedRewards
+          handler: handleClaimedReward
       file: ./src/fee-pool-upgradeable.ts
