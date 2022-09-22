@@ -204,6 +204,29 @@ export class FeePoolUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  getLastEpochLpFees(_tokenTicker: string): BigInt {
+    let result = super.call(
+      "getLastEpochLpFees",
+      "getLastEpochLpFees(string):(uint256)",
+      [ethereum.Value.fromString(_tokenTicker)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getLastEpochLpFees(_tokenTicker: string): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getLastEpochLpFees",
+      "getLastEpochLpFees(string):(uint256)",
+      [ethereum.Value.fromString(_tokenTicker)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   getUserConfirmedRewards(
     _tokenTicker: string,
     _account: Address,

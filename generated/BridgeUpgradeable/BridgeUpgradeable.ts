@@ -1204,10 +1204,10 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  totalBoostedUsers(param0: string, param1: BigInt): BigInt {
+  totalBoostedLiquidity(param0: string, param1: BigInt): BigInt {
     let result = super.call(
-      "totalBoostedUsers",
-      "totalBoostedUsers(string,uint256):(uint256)",
+      "totalBoostedLiquidity",
+      "totalBoostedLiquidity(string,uint256):(uint256)",
       [
         ethereum.Value.fromString(param0),
         ethereum.Value.fromUnsignedBigInt(param1)
@@ -1217,13 +1217,13 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     return result[0].toBigInt();
   }
 
-  try_totalBoostedUsers(
+  try_totalBoostedLiquidity(
     param0: string,
     param1: BigInt
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
-      "totalBoostedUsers",
-      "totalBoostedUsers(string,uint256):(uint256)",
+      "totalBoostedLiquidity",
+      "totalBoostedLiquidity(string,uint256):(uint256)",
       [
         ethereum.Value.fromString(param0),
         ethereum.Value.fromUnsignedBigInt(param1)

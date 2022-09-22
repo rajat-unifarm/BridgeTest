@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BridgeUpgradeable
-    network: avalanche
+    network: matic
     source:
       abi: BridgeUpgradeable
-      address: "0xAc7B488941CE5649120FBB2097F7eCAa7cE1cDe4"
-      startBlock: 19545567
+      address: "0xf72e2152e92DC4288051c4AC87B225E1CCEF9694"
+      startBlock: 33375521
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -26,11 +26,11 @@ dataSources:
       file: BridgeUpgradeable/BridgeUpgradeable.wasm
   - kind: ethereum
     name: FeePoolUpgradeable
-    network: avalanche
+    network: matic
     source:
       abi: FeePoolUpgradeable
-      address: "0x608B8F0821095A3f6f6E6659A53998f3B7ab75D9"
-      startBlock: 19545622
+      address: "0x448dC0A03A596345BB672C6A6f75e1743cb021b0"
+      startBlock: 33375618
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

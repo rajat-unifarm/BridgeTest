@@ -11,42 +11,42 @@
   },
   "matic": {
     "BridgeUpgradeable": {
-      "address": "0xF7712DFEc3915A2f88f8cb5Ff27180dde1A74Cbc",
-      "startBlock": 32694030
+      "address": "0xf72e2152e92DC4288051c4AC87B225E1CCEF9694",
+      "startBlock": 33375521
     },
     "FeePoolUpgradeable": {
-      "address": "0xE36a6Ac5e1E2B5A5b2dDe5EF7753A9EB4f4AB9FC",
-      "startBlock": 32694131
+      "address": "0x448dC0A03A596345BB672C6A6f75e1743cb021b0",
+      "startBlock": 33375618
     }
   },
   "bsc": {
     "BridgeUpgradeable": {
-      "address": "0xe6774ea9eC37B29CcCd93B118718B9C9E1D0210C",
-      "startBlock": 21074878
+      "address": "0x4A9C32920c2211Edd521049803b6Dd7496dDB04D",
+      "startBlock": 21543493
     },
     "FeePoolUpgradeable": {
-      "address": "0x8cCF717735cECA1D33A1FA3b006645e2f6C37dA0",
-      "startBlock": 21074934
+      "address": "0x2bbf37b4c98b393085E7155B62962990cBef1e42",
+      "startBlock": 21543749
     }
   },
   "fantom": {
     "BridgeUpgradeable": {
-      "address": "0xCA4245ED565Ac6e27E799A39366F775ce6522ad5",
-      "startBlock": 46363212
+      "address": "0xf460cd89c1d559cc06e2C82ada7892Af5dA5a133",
+      "startBlock": 47396083
     },
     "FeePoolUpgradeable": {
-      "address": "0x668A71584064aF99a0f5Ec4e870a6503e6682Bf3",
-      "startBlock": 46363322
+      "address": "0x9b6aF6e7e439Fc6046Ea5346249a4d90F6eA83af",
+      "startBlock": 47396196
     }
   },
   "avalanche": {
     "BridgeUpgradeable": {
-      "address": "0xAc7B488941CE5649120FBB2097F7eCAa7cE1cDe4",
-      "startBlock": 19545567
+      "address": "0xf460cd89c1d559cc06e2C82ada7892Af5dA5a133",
+      "startBlock": 20122465
     },
     "FeePoolUpgradeable": {
-      "address": "0x608B8F0821095A3f6f6E6659A53998f3B7ab75D9",
-      "startBlock": 19545622
+      "address": "0x9b6aF6e7e439Fc6046Ea5346249a4d90F6eA83af",
+      "startBlock": 20122541
     }
   }
 }
