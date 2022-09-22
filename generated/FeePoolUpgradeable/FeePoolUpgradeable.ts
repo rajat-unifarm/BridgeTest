@@ -31,8 +31,8 @@ export class ClaimedRewards__Params {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get tokenTicker(): Bytes {
-    return this._event.parameters[2].value.toBytes();
+  get tokenTicker(): string {
+    return this._event.parameters[2].value.toString();
   }
 
   get noOfTokens(): BigInt {
@@ -126,6 +126,29 @@ export class FeePoolUpgradeable extends ethereum.SmartContract {
     let result = super.tryCall(
       "bridgeUpgradeable",
       "bridgeUpgradeable():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  bridgeUtilsUpgradeable(): Address {
+    let result = super.call(
+      "bridgeUtilsUpgradeable",
+      "bridgeUtilsUpgradeable():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_bridgeUtilsUpgradeable(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "bridgeUtilsUpgradeable",
+      "bridgeUtilsUpgradeable():(address)",
       []
     );
     if (result.reverted) {
@@ -535,6 +558,36 @@ export class UpdateBridgeUpgradeableAddressCall__Outputs {
   _call: UpdateBridgeUpgradeableAddressCall;
 
   constructor(call: UpdateBridgeUpgradeableAddressCall) {
+    this._call = call;
+  }
+}
+
+export class UpdateBridgeUtilsUpgradeableAddressCall extends ethereum.Call {
+  get inputs(): UpdateBridgeUtilsUpgradeableAddressCall__Inputs {
+    return new UpdateBridgeUtilsUpgradeableAddressCall__Inputs(this);
+  }
+
+  get outputs(): UpdateBridgeUtilsUpgradeableAddressCall__Outputs {
+    return new UpdateBridgeUtilsUpgradeableAddressCall__Outputs(this);
+  }
+}
+
+export class UpdateBridgeUtilsUpgradeableAddressCall__Inputs {
+  _call: UpdateBridgeUtilsUpgradeableAddressCall;
+
+  constructor(call: UpdateBridgeUtilsUpgradeableAddressCall) {
+    this._call = call;
+  }
+
+  get _newInstance(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class UpdateBridgeUtilsUpgradeableAddressCall__Outputs {
+  _call: UpdateBridgeUtilsUpgradeableAddressCall;
+
+  constructor(call: UpdateBridgeUtilsUpgradeableAddressCall) {
     this._call = call;
   }
 }

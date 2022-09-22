@@ -11,6 +11,12 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "fromChainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "toChainId",
         "type": "uint256"
       },
@@ -387,6 +393,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "bridgeUtilsUpgradeable",
+    "outputs": [
+      {
+        "internalType": "contract BridgeUtilsUpgradeable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -443,6 +462,11 @@
         "internalType": "uint256",
         "name": "_transferIndex",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_fromChain",
+        "type": "uint8"
       }
     ],
     "name": "createCrossChainTransferMapping",
@@ -479,6 +503,11 @@
         "internalType": "uint256",
         "name": "_index",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_fromChain",
+        "type": "uint8"
       }
     ],
     "name": "crossChainTransferIn",
@@ -552,19 +581,9 @@
   {
     "inputs": [
       {
-        "internalType": "string",
+        "internalType": "bytes32",
         "name": "",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
+        "type": "bytes32"
       }
     ],
     "name": "currentTransferIndex",
@@ -753,51 +772,23 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_tokenTicker",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_epochIndex",
-        "type": "uint256"
-      }
-    ],
-    "name": "getEpochTotalDepositors",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
+    "inputs": [],
+    "name": "getBackNativeTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "_tokenTicker",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_epochIndex",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
       }
     ],
-    "name": "getEpochTotalFees",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "getBackTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -833,54 +824,6 @@
         "internalType": "contract TokenUpgradeable",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "tokenTicker",
-        "type": "string"
-      }
-    ],
-    "name": "getTokenTotalLiquidity",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "tokenTicker",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "index",
-        "type": "uint256"
-      }
-    ],
-    "name": "getUserTotalDeposit",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -1265,6 +1208,25 @@
     "inputs": [
       {
         "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "totalLpLiquidity",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
         "name": "_tokenTicker",
         "type": "string"
       },
@@ -1303,24 +1265,9 @@
   {
     "inputs": [
       {
-        "internalType": "string",
+        "internalType": "bytes32",
         "name": "",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "type": "bytes32"
       }
     ],
     "name": "transferMapping",
@@ -1396,6 +1343,19 @@
   {
     "inputs": [
       {
+        "internalType": "contract BridgeUtilsUpgradeable",
+        "name": "_bridgeUtilsAddress",
+        "type": "address"
+      }
+    ],
+    "name": "updateBridgeUtilsAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "_newGasAmount",
         "type": "uint256"
@@ -1441,6 +1401,29 @@
       }
     ],
     "name": "updateRegistryAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_tokenTicker",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateRewardClaimedTillIndex",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

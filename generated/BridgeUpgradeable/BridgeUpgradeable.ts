@@ -27,20 +27,24 @@ export class BridgeTransactionEnd__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get toChainId(): BigInt {
+  get fromChainId(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
 
+  get toChainId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
   get account(): Address {
-    return this._event.parameters[2].value.toAddress();
+    return this._event.parameters[3].value.toAddress();
   }
 
   get tokenTicker(): string {
-    return this._event.parameters[3].value.toString();
+    return this._event.parameters[4].value.toString();
   }
 
   get status(): i32 {
-    return this._event.parameters[4].value.toI32();
+    return this._event.parameters[5].value.toI32();
   }
 }
 
@@ -577,6 +581,29 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     );
   }
 
+  bridgeUtilsUpgradeable(): Address {
+    let result = super.call(
+      "bridgeUtilsUpgradeable",
+      "bridgeUtilsUpgradeable():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_bridgeUtilsUpgradeable(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "bridgeUtilsUpgradeable",
+      "bridgeUtilsUpgradeable():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   chainId(): i32 {
     let result = super.call("chainId", "chainId():(uint8)", []);
 
@@ -688,33 +715,21 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  currentTransferIndex(param0: string, param1: Address, param2: i32): BigInt {
+  currentTransferIndex(param0: Bytes): BigInt {
     let result = super.call(
       "currentTransferIndex",
-      "currentTransferIndex(string,address,uint8):(uint256)",
-      [
-        ethereum.Value.fromString(param0),
-        ethereum.Value.fromAddress(param1),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param2))
-      ]
+      "currentTransferIndex(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_currentTransferIndex(
-    param0: string,
-    param1: Address,
-    param2: i32
-  ): ethereum.CallResult<BigInt> {
+  try_currentTransferIndex(param0: Bytes): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "currentTransferIndex",
-      "currentTransferIndex(string,address,uint8):(uint256)",
-      [
-        ethereum.Value.fromString(param0),
-        ethereum.Value.fromAddress(param1),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param2))
-      ]
+      "currentTransferIndex(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -901,70 +916,6 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getEpochTotalDepositors(_tokenTicker: string, _epochIndex: BigInt): BigInt {
-    let result = super.call(
-      "getEpochTotalDepositors",
-      "getEpochTotalDepositors(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_tokenTicker),
-        ethereum.Value.fromUnsignedBigInt(_epochIndex)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getEpochTotalDepositors(
-    _tokenTicker: string,
-    _epochIndex: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getEpochTotalDepositors",
-      "getEpochTotalDepositors(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_tokenTicker),
-        ethereum.Value.fromUnsignedBigInt(_epochIndex)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getEpochTotalFees(_tokenTicker: string, _epochIndex: BigInt): BigInt {
-    let result = super.call(
-      "getEpochTotalFees",
-      "getEpochTotalFees(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_tokenTicker),
-        ethereum.Value.fromUnsignedBigInt(_epochIndex)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getEpochTotalFees(
-    _tokenTicker: string,
-    _epochIndex: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getEpochTotalFees",
-      "getEpochTotalFees(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_tokenTicker),
-        ethereum.Value.fromUnsignedBigInt(_epochIndex)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   getEpochsLength(_tokenTicker: string): BigInt {
     let result = super.call(
       "getEpochsLength",
@@ -1005,68 +956,6 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  getTokenTotalLiquidity(tokenTicker: string): BigInt {
-    let result = super.call(
-      "getTokenTotalLiquidity",
-      "getTokenTotalLiquidity(string):(uint256)",
-      [ethereum.Value.fromString(tokenTicker)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getTokenTotalLiquidity(tokenTicker: string): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getTokenTotalLiquidity",
-      "getTokenTotalLiquidity(string):(uint256)",
-      [ethereum.Value.fromString(tokenTicker)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getUserTotalDeposit(
-    tokenTicker: string,
-    account: Address,
-    index: BigInt
-  ): BigInt {
-    let result = super.call(
-      "getUserTotalDeposit",
-      "getUserTotalDeposit(string,address,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(tokenTicker),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(index)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getUserTotalDeposit(
-    tokenTicker: string,
-    account: Address,
-    index: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getUserTotalDeposit",
-      "getUserTotalDeposit(string,address,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(tokenTicker),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(index)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   hasBooster(
@@ -1370,6 +1259,29 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  totalLpLiquidity(param0: string): BigInt {
+    let result = super.call(
+      "totalLpLiquidity",
+      "totalLpLiquidity(string):(uint256)",
+      [ethereum.Value.fromString(param0)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_totalLpLiquidity(param0: string): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "totalLpLiquidity",
+      "totalLpLiquidity(string):(uint256)",
+      [ethereum.Value.fromString(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   transferIn(
     _tokenTicker: string,
     _noOfTokens: BigInt,
@@ -1421,41 +1333,21 @@ export class BridgeUpgradeable extends ethereum.SmartContract {
     );
   }
 
-  transferMapping(
-    param0: string,
-    param1: Address,
-    param2: i32,
-    param3: BigInt
-  ): BigInt {
+  transferMapping(param0: Bytes): BigInt {
     let result = super.call(
       "transferMapping",
-      "transferMapping(string,address,uint8,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(param0),
-        ethereum.Value.fromAddress(param1),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param2)),
-        ethereum.Value.fromUnsignedBigInt(param3)
-      ]
+      "transferMapping(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_transferMapping(
-    param0: string,
-    param1: Address,
-    param2: i32,
-    param3: BigInt
-  ): ethereum.CallResult<BigInt> {
+  try_transferMapping(param0: Bytes): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "transferMapping",
-      "transferMapping(string,address,uint8,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(param0),
-        ethereum.Value.fromAddress(param1),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param2)),
-        ethereum.Value.fromUnsignedBigInt(param3)
-      ]
+      "transferMapping(bytes32):(uint256)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1701,6 +1593,10 @@ export class CreateCrossChainTransferMappingCall__Inputs {
   get _transferIndex(): BigInt {
     return this._call.inputValues[3].value.toBigInt();
   }
+
+  get _fromChain(): i32 {
+    return this._call.inputValues[4].value.toI32();
+  }
 }
 
 export class CreateCrossChainTransferMappingCall__Outputs {
@@ -1738,6 +1634,10 @@ export class CrossChainTransferInCall__Inputs {
 
   get _index(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get _fromChain(): i32 {
+    return this._call.inputValues[3].value.toI32();
   }
 }
 
@@ -1837,6 +1737,62 @@ export class DeleteHasBoosterMappingCall__Outputs {
   _call: DeleteHasBoosterMappingCall;
 
   constructor(call: DeleteHasBoosterMappingCall) {
+    this._call = call;
+  }
+}
+
+export class GetBackNativeTokensCall extends ethereum.Call {
+  get inputs(): GetBackNativeTokensCall__Inputs {
+    return new GetBackNativeTokensCall__Inputs(this);
+  }
+
+  get outputs(): GetBackNativeTokensCall__Outputs {
+    return new GetBackNativeTokensCall__Outputs(this);
+  }
+}
+
+export class GetBackNativeTokensCall__Inputs {
+  _call: GetBackNativeTokensCall;
+
+  constructor(call: GetBackNativeTokensCall) {
+    this._call = call;
+  }
+}
+
+export class GetBackNativeTokensCall__Outputs {
+  _call: GetBackNativeTokensCall;
+
+  constructor(call: GetBackNativeTokensCall) {
+    this._call = call;
+  }
+}
+
+export class GetBackTokensCall extends ethereum.Call {
+  get inputs(): GetBackTokensCall__Inputs {
+    return new GetBackTokensCall__Inputs(this);
+  }
+
+  get outputs(): GetBackTokensCall__Outputs {
+    return new GetBackTokensCall__Outputs(this);
+  }
+}
+
+export class GetBackTokensCall__Inputs {
+  _call: GetBackTokensCall;
+
+  constructor(call: GetBackTokensCall) {
+    this._call = call;
+  }
+
+  get tokenAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class GetBackTokensCall__Outputs {
+  _call: GetBackTokensCall;
+
+  constructor(call: GetBackTokensCall) {
     this._call = call;
   }
 }
@@ -2303,6 +2259,36 @@ export class UpdateBoosterConfigCall__Outputs {
   }
 }
 
+export class UpdateBridgeUtilsAddressCall extends ethereum.Call {
+  get inputs(): UpdateBridgeUtilsAddressCall__Inputs {
+    return new UpdateBridgeUtilsAddressCall__Inputs(this);
+  }
+
+  get outputs(): UpdateBridgeUtilsAddressCall__Outputs {
+    return new UpdateBridgeUtilsAddressCall__Outputs(this);
+  }
+}
+
+export class UpdateBridgeUtilsAddressCall__Inputs {
+  _call: UpdateBridgeUtilsAddressCall;
+
+  constructor(call: UpdateBridgeUtilsAddressCall) {
+    this._call = call;
+  }
+
+  get _bridgeUtilsAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class UpdateBridgeUtilsAddressCall__Outputs {
+  _call: UpdateBridgeUtilsAddressCall;
+
+  constructor(call: UpdateBridgeUtilsAddressCall) {
+    this._call = call;
+  }
+}
+
 export class UpdateCrossChainGasCall extends ethereum.Call {
   get inputs(): UpdateCrossChainGasCall__Inputs {
     return new UpdateCrossChainGasCall__Inputs(this);
@@ -2419,6 +2405,44 @@ export class UpdateRegistryAddressCall__Outputs {
   _call: UpdateRegistryAddressCall;
 
   constructor(call: UpdateRegistryAddressCall) {
+    this._call = call;
+  }
+}
+
+export class UpdateRewardClaimedTillIndexCall extends ethereum.Call {
+  get inputs(): UpdateRewardClaimedTillIndexCall__Inputs {
+    return new UpdateRewardClaimedTillIndexCall__Inputs(this);
+  }
+
+  get outputs(): UpdateRewardClaimedTillIndexCall__Outputs {
+    return new UpdateRewardClaimedTillIndexCall__Outputs(this);
+  }
+}
+
+export class UpdateRewardClaimedTillIndexCall__Inputs {
+  _call: UpdateRewardClaimedTillIndexCall;
+
+  constructor(call: UpdateRewardClaimedTillIndexCall) {
+    this._call = call;
+  }
+
+  get _tokenTicker(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+
+  get _account(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _index(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class UpdateRewardClaimedTillIndexCall__Outputs {
+  _call: UpdateRewardClaimedTillIndexCall;
+
+  constructor(call: UpdateRewardClaimedTillIndexCall) {
     this._call = call;
   }
 }

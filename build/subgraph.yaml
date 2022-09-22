@@ -7,8 +7,8 @@ dataSources:
     network: avalanche
     source:
       abi: BridgeUpgradeable
-      address: "0xf677447c30a94091d880D7387d52F3503E5cDfbF"
-      startBlock: 19309511
+      address: "0xAc7B488941CE5649120FBB2097F7eCAa7cE1cDe4"
+      startBlock: 19545567
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -29,8 +29,8 @@ dataSources:
     network: avalanche
     source:
       abi: FeePoolUpgradeable
-      address: "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b"
-      startBlock: 18969737
+      address: "0x608B8F0821095A3f6f6E6659A53998f3B7ab75D9"
+      startBlock: 19545622
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -41,6 +41,6 @@ dataSources:
         - name: FeePoolUpgradeable
           file: FeePoolUpgradeable/abis/FeePoolUpgradeable.json
       eventHandlers:
-        - event: ClaimedRewards(indexed uint256,indexed address,indexed string,uint256,uint256)
+        - event: ClaimedRewards(indexed uint256,indexed address,string,uint256,uint256)
           handler: handleClaimedReward
       file: FeePoolUpgradeable/FeePoolUpgradeable.wasm

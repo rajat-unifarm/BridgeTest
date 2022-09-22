@@ -15,7 +15,7 @@
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "tokenTicker",
         "type": "string"
@@ -93,6 +93,19 @@
     "outputs": [
       {
         "internalType": "contract BridgeUpgradeable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "bridgeUtilsUpgradeable",
+    "outputs": [
+      {
+        "internalType": "contract BridgeUtilsUpgradeable",
         "name": "",
         "type": "address"
       }
@@ -342,6 +355,19 @@
       }
     ],
     "name": "updateBridgeUpgradeableAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract BridgeUtilsUpgradeable",
+        "name": "_newInstance",
+        "type": "address"
+      }
+    ],
+    "name": "updateBridgeUtilsUpgradeableAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

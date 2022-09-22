@@ -11,7 +11,7 @@ export function handleClaimedReward(event: ClaimedRewardsEvent): void {
   )
   entity.index = event.params.index
   entity.account = event.params.account
-  entity.tokenTicker = event.params.tokenTicker.toString()
+  entity.tokenTicker = event.params.tokenTicker
   entity.noOfTokens = event.params.noOfTokens
   entity.claimTimestamp = event.params.claimTimestamp
   entity.txHash = event.transaction.hash
