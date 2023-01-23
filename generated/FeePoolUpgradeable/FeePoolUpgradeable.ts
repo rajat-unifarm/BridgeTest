@@ -181,21 +181,30 @@ export class FeePoolUpgradeable extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getAdminTokenFees(_tokenTicker: string): BigInt {
+  getAdminTokenFees(_tokenTicker: string, _limit: BigInt): BigInt {
     let result = super.call(
       "getAdminTokenFees",
-      "getAdminTokenFees(string):(uint256)",
-      [ethereum.Value.fromString(_tokenTicker)]
+      "getAdminTokenFees(string,uint256):(uint256)",
+      [
+        ethereum.Value.fromString(_tokenTicker),
+        ethereum.Value.fromUnsignedBigInt(_limit)
+      ]
     );
 
     return result[0].toBigInt();
   }
 
-  try_getAdminTokenFees(_tokenTicker: string): ethereum.CallResult<BigInt> {
+  try_getAdminTokenFees(
+    _tokenTicker: string,
+    _limit: BigInt
+  ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getAdminTokenFees",
-      "getAdminTokenFees(string):(uint256)",
-      [ethereum.Value.fromString(_tokenTicker)]
+      "getAdminTokenFees(string,uint256):(uint256)",
+      [
+        ethereum.Value.fromString(_tokenTicker),
+        ethereum.Value.fromUnsignedBigInt(_limit)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -699,6 +708,10 @@ export class WithdrawAdminAllTokenFeesCall__Inputs {
   constructor(call: WithdrawAdminAllTokenFeesCall) {
     this._call = call;
   }
+
+  get _limit(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
 }
 
 export class WithdrawAdminAllTokenFeesCall__Outputs {
@@ -728,6 +741,10 @@ export class WithdrawAdminTokenFeesCall__Inputs {
 
   get _tokenTicker(): string {
     return this._call.inputValues[0].value.toString();
+  }
+
+  get _limit(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
   }
 }
 

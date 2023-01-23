@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BridgeUpgradeable
-    network: matic
+    network: mainnet
     source:
       abi: BridgeUpgradeable
-      address: "0xf72e2152e92DC4288051c4AC87B225E1CCEF9694"
-      startBlock: 33375521
+      address: "0xD13dF6B426358C2471bC6dea75167c3c106Ef881"
+      startBlock: 15767461
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -21,16 +21,16 @@ dataSources:
       eventHandlers:
         - event: LiquidityAdded(indexed uint256,indexed address,string,uint256)
           handler: handleLiquidityAdded
-        - event: LiquidityRemoved(indexed uint256,indexed address,string)
+        - event: LiquidityRemoved(indexed uint256,indexed address,string,uint256)
           handler: handleLiquidityRemoved
       file: ./src/bridge-upgradeable.ts
   - kind: ethereum
     name: FeePoolUpgradeable
-    network: matic
+    network: mainnet
     source:
       abi: FeePoolUpgradeable
-      address: "0x448dC0A03A596345BB672C6A6f75e1743cb021b0"
-      startBlock: 33375618
+      address: "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b"
+      startBlock: 15767475
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

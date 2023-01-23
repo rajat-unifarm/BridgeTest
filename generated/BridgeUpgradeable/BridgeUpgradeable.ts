@@ -10,16 +10,16 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class BridgeTransactionEnd extends ethereum.Event {
-  get params(): BridgeTransactionEnd__Params {
-    return new BridgeTransactionEnd__Params(this);
+export class BridgeTransaction extends ethereum.Event {
+  get params(): BridgeTransaction__Params {
+    return new BridgeTransaction__Params(this);
   }
 }
 
-export class BridgeTransactionEnd__Params {
-  _event: BridgeTransactionEnd;
+export class BridgeTransaction__Params {
+  _event: BridgeTransaction;
 
-  constructor(event: BridgeTransactionEnd) {
+  constructor(event: BridgeTransaction) {
     this._event = event;
   }
 
@@ -43,42 +43,12 @@ export class BridgeTransactionEnd__Params {
     return this._event.parameters[4].value.toString();
   }
 
-  get status(): i32 {
-    return this._event.parameters[5].value.toI32();
-  }
-}
-
-export class BridgeTransactionInit extends ethereum.Event {
-  get params(): BridgeTransactionInit__Params {
-    return new BridgeTransactionInit__Params(this);
-  }
-}
-
-export class BridgeTransactionInit__Params {
-  _event: BridgeTransactionInit;
-
-  constructor(event: BridgeTransactionInit) {
-    this._event = event;
-  }
-
-  get transferIndex(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get toChainId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get account(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get tokenTicker(): string {
-    return this._event.parameters[3].value.toString();
-  }
-
   get noOfTokens(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get status(): i32 {
+    return this._event.parameters[6].value.toI32();
   }
 }
 
@@ -243,6 +213,10 @@ export class LiquidityRemoved__Params {
 
   get tokenTicker(): string {
     return this._event.parameters[2].value.toString();
+  }
+
+  get noOfTokens(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
   }
 }
 
@@ -1421,36 +1395,6 @@ export class UnlinkCall__Outputs {
   }
 }
 
-export class _addPassedEpochsCall extends ethereum.Call {
-  get inputs(): _addPassedEpochsCall__Inputs {
-    return new _addPassedEpochsCall__Inputs(this);
-  }
-
-  get outputs(): _addPassedEpochsCall__Outputs {
-    return new _addPassedEpochsCall__Outputs(this);
-  }
-}
-
-export class _addPassedEpochsCall__Inputs {
-  _call: _addPassedEpochsCall;
-
-  constructor(call: _addPassedEpochsCall) {
-    this._call = call;
-  }
-
-  get _tokenTicker(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-}
-
-export class _addPassedEpochsCall__Outputs {
-  _call: _addPassedEpochsCall;
-
-  constructor(call: _addPassedEpochsCall) {
-    this._call = call;
-  }
-}
-
 export class AddLiquidityCall extends ethereum.Call {
   get inputs(): AddLiquidityCall__Inputs {
     return new AddLiquidityCall__Inputs(this);
@@ -1485,6 +1429,36 @@ export class AddLiquidityCall__Outputs {
   _call: AddLiquidityCall;
 
   constructor(call: AddLiquidityCall) {
+    this._call = call;
+  }
+}
+
+export class AddPassedEpochsCall extends ethereum.Call {
+  get inputs(): AddPassedEpochsCall__Inputs {
+    return new AddPassedEpochsCall__Inputs(this);
+  }
+
+  get outputs(): AddPassedEpochsCall__Outputs {
+    return new AddPassedEpochsCall__Outputs(this);
+  }
+}
+
+export class AddPassedEpochsCall__Inputs {
+  _call: AddPassedEpochsCall;
+
+  constructor(call: AddPassedEpochsCall) {
+    this._call = call;
+  }
+
+  get _tokenTicker(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+}
+
+export class AddPassedEpochsCall__Outputs {
+  _call: AddPassedEpochsCall;
+
+  constructor(call: AddPassedEpochsCall) {
     this._call = call;
   }
 }
@@ -1737,62 +1711,6 @@ export class DeleteHasBoosterMappingCall__Outputs {
   _call: DeleteHasBoosterMappingCall;
 
   constructor(call: DeleteHasBoosterMappingCall) {
-    this._call = call;
-  }
-}
-
-export class GetBackNativeTokensCall extends ethereum.Call {
-  get inputs(): GetBackNativeTokensCall__Inputs {
-    return new GetBackNativeTokensCall__Inputs(this);
-  }
-
-  get outputs(): GetBackNativeTokensCall__Outputs {
-    return new GetBackNativeTokensCall__Outputs(this);
-  }
-}
-
-export class GetBackNativeTokensCall__Inputs {
-  _call: GetBackNativeTokensCall;
-
-  constructor(call: GetBackNativeTokensCall) {
-    this._call = call;
-  }
-}
-
-export class GetBackNativeTokensCall__Outputs {
-  _call: GetBackNativeTokensCall;
-
-  constructor(call: GetBackNativeTokensCall) {
-    this._call = call;
-  }
-}
-
-export class GetBackTokensCall extends ethereum.Call {
-  get inputs(): GetBackTokensCall__Inputs {
-    return new GetBackTokensCall__Inputs(this);
-  }
-
-  get outputs(): GetBackTokensCall__Outputs {
-    return new GetBackTokensCall__Outputs(this);
-  }
-}
-
-export class GetBackTokensCall__Inputs {
-  _call: GetBackTokensCall;
-
-  constructor(call: GetBackTokensCall) {
-    this._call = call;
-  }
-
-  get tokenAddress(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class GetBackTokensCall__Outputs {
-  _call: GetBackTokensCall;
-
-  constructor(call: GetBackTokensCall) {
     this._call = call;
   }
 }

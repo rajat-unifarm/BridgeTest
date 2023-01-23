@@ -4,6 +4,7 @@ type LiquidityPosition @entity {
   account: Bytes!
   tokenTicker: String!
   noOfTokens: BigInt!
+  noOfTokensLeft: BigInt!
   status: Int!
   addTimestamp: BigInt!
   removeTimestamp: BigInt!

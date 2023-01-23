@@ -18,24 +18,10 @@ export function handleLiquidityAdded(event: LiquidityAdded): void {
   entity.account = event.params.account
   entity.tokenTicker = event.params.tokenTicker
   entity.noOfTokens = event.params.noOfTokens
+  entity.noOfTokensLeft = event.params.noOfTokens
   entity.status = 1
   entity.addTimestamp = event.block.timestamp
   entity.removeTimestamp = new BigInt(0)
-
-  // let decodedData = ethereum.decode("(uint256,address,string,uint256)", event.transaction.input);
-  // const dataToDecode = getTxnInputDataToDecode(event)
-  // const decodedData = ethereum.decode("(uint256,address,string,uint256)", dataToDecode);
-  // // log.info('First field: {}', [decoded.toTuple()[0].toString()];
-  // if(decodedData) {
-  //   log.info("decoded tokenTicker: {}", [decodedData.toString()]);
-  //   // entity.tokenTicker = decodedData.toString();
-  // }
-  // else {
-  //   log.info("Decoding failed", [])
-  // }
-  // else {
-  //   entity.tokenTicker = event.params.tokenTicker.toHexString()
-  // }
 
   entity.save()
 }
@@ -48,6 +34,7 @@ export function handleLiquidityRemoved(event: LiquidityRemoved): void {
   }
   // store.remove('LiquidityPosition', id);
   entity.status = 2
+  entity.noOfTokensLeft = entity.noOfTokens.minus(event.params.noOfTokens)
   entity.removeTimestamp = event.block.timestamp
   entity.save()
 }

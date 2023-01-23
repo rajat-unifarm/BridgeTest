@@ -11,25 +11,45 @@
   },
   "matic": {
     "BridgeUpgradeable": {
-      "address": "0xf72e2152e92DC4288051c4AC87B225E1CCEF9694",
-      "startBlock": 33375521
+      "address": "0x62CEfDaDd37C8169034b2efD4401bc770B7B92D3",
+      "startBlock": 34455961
     },
     "FeePoolUpgradeable": {
-      "address": "0x448dC0A03A596345BB672C6A6f75e1743cb021b0",
-      "startBlock": 33375618
+      "address": "0x8ee9E4977C40bd0827000A782649fb6a8F03e10a",
+      "startBlock": 34456029
     }
   },
   "bsc": {
     "BridgeUpgradeable": {
-      "address": "0x4A9C32920c2211Edd521049803b6Dd7496dDB04D",
-      "startBlock": 21543493
+      "address": "0x7423Af05D11e7363cF5Ea5Ef2eA55c7E7AEA3f7a",
+      "startBlock": 22251742
     },
     "FeePoolUpgradeable": {
+      "address": "0x6F1Fb547A80EAe6543eadF4EC39fc0F07c898cf2",
+      "startBlock": 22251814
+    }
+  },
+  "avalanche": {
+    "BridgeUpgradeable": {
       "address": "0x2bbf37b4c98b393085E7155B62962990cBef1e42",
-      "startBlock": 21543749
+      "startBlock": 21177422
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x56403d9E38572e00a5651002aFc0336F8284E4d0",
+      "startBlock": 21177489
     }
   },
   "fantom": {
+    "BridgeUpgradeable": {
+      "address": "0x4535C4EE8984581DEbe904D5eE5c261e42E20378",
+      "startBlock": 49375320
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x7D8df9B57Ed4445819ac1D511b852d8596B744A7",
+      "startBlock": 49375477
+    }
+  },
+  "arbitrum-one": {
     "BridgeUpgradeable": {
       "address": "0xf460cd89c1d559cc06e2C82ada7892Af5dA5a133",
       "startBlock": 47396083
@@ -39,14 +59,24 @@
       "startBlock": 47396196
     }
   },
-  "avalanche": {
+  "optimism": {
     "BridgeUpgradeable": {
-      "address": "0xf460cd89c1d559cc06e2C82ada7892Af5dA5a133",
-      "startBlock": 20122465
+      "address": "0xD13dF6B426358C2471bC6dea75167c3c106Ef881",
+      "startBlock": 29877455
     },
     "FeePoolUpgradeable": {
-      "address": "0x9b6aF6e7e439Fc6046Ea5346249a4d90F6eA83af",
-      "startBlock": 20122541
+      "address": "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b",
+      "startBlock": 29877867
+    }
+  },
+  "mainnet": {
+    "BridgeUpgradeable": {
+      "address": "0xD13dF6B426358C2471bC6dea75167c3c106Ef881",
+      "startBlock": 15767461
+    },
+    "FeePoolUpgradeable": {
+      "address": "0x04f3dD4f010620fcAF0188046C346B5FE9D2d26b",
+      "startBlock": 15767475
     }
   }
 }

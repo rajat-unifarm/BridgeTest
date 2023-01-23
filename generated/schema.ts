@@ -80,6 +80,15 @@ export class LiquidityPosition extends Entity {
     this.set("noOfTokens", Value.fromBigInt(value));
   }
 
+  get noOfTokensLeft(): BigInt {
+    let value = this.get("noOfTokensLeft");
+    return value!.toBigInt();
+  }
+
+  set noOfTokensLeft(value: BigInt) {
+    this.set("noOfTokensLeft", Value.fromBigInt(value));
+  }
+
   get status(): i32 {
     let value = this.get("status");
     return value!.toI32();

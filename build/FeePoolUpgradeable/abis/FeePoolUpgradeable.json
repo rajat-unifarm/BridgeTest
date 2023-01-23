@@ -156,6 +156,11 @@
         "internalType": "string",
         "name": "_tokenTicker",
         "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_limit",
+        "type": "uint256"
       }
     ],
     "name": "getAdminTokenFees",
@@ -428,7 +433,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_limit",
+        "type": "uint256"
+      }
+    ],
     "name": "withdrawAdminAllTokenFees",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -440,6 +451,11 @@
         "internalType": "string",
         "name": "_tokenTicker",
         "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_limit",
+        "type": "uint256"
       }
     ],
     "name": "withdrawAdminTokenFees",

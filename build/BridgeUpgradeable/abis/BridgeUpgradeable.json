@@ -34,49 +34,18 @@
       },
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "noOfTokens",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "internalType": "uint8",
         "name": "status",
         "type": "uint8"
       }
     ],
-    "name": "BridgeTransactionEnd",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "transferIndex",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "toChainId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "tokenTicker",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "noOfTokens",
-        "type": "uint256"
-      }
-    ],
-    "name": "BridgeTransactionInit",
+    "name": "BridgeTransaction",
     "type": "event"
   },
   {
@@ -236,6 +205,12 @@
         "internalType": "string",
         "name": "tokenTicker",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "noOfTokens",
+        "type": "uint256"
       }
     ],
     "name": "LiquidityRemoved",
@@ -316,19 +291,6 @@
         "internalType": "string",
         "name": "_tokenTicker",
         "type": "string"
-      }
-    ],
-    "name": "_addPassedEpochs",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_tokenTicker",
-        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -342,6 +304,19 @@
       }
     ],
     "name": "addLiquidity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_tokenTicker",
+        "type": "string"
+      }
+    ],
+    "name": "addPassedEpochs",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -769,26 +744,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getBackNativeTokens",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenAddress",
-        "type": "address"
-      }
-    ],
-    "name": "getBackTokens",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
